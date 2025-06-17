@@ -97,8 +97,4 @@ For Cashfree API support, contact: [care@cashfree.com](mailto:care@cashfree.com)
 
 ```
 
----
-
-Let me know if you want to include demo screenshots or a [live deployment link section](f).
-```
 
