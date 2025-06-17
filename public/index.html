@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://sandbox.cashfree.com https://sdk.cashfree.com; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://sdk.cashfree.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:;">
+  <title>Subscription Plans</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+  <style>
+    .pricing-card {
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .pricing-card:hover {
+      transform: scale(1.02);
+    }
+    .pricing-header {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .pricing-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .pricing-body ul li {
+      padding: 8px 0;
+      font-size: 15px;
+    }
+    .fa-check { color: green; }
+    .fa-times { color: red; }
+    .checkout-container {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container py-5">
+  <h2 class="text-center mb-5">Periodic Subscription Model</h2>
+  <h6 class="text-center mb-5">Choose a subscription plan below. Click Subscribe to create a subscription mapped to existing plans.</h6>
+  <div class="container mt-5">
+  <div class="row g-4">
+    <!-- Basic Plan -->
+    <div class="col-md-4">
+      <div class="pricing-card bg-white h-100 shadow rounded">
+        <div class="pricing-header bg-info text-white text-center p-3 rounded-top">
+          <h4>Basic Daily Plan</h4>
+          <h2>₹100 <small>/day</small></h2>
+        </div>
+        <div class="pricing-body p-4">
+          <ul class="list-unstyled">
+            <li><i class="fas fa-times text-danger me-2"></i>Enach not supported for Daily plans</li>
+            <li><i class="fas fa-check text-success me-2"></i>UPI > ₹15k supported via Adhoc</li>
+            <li><i class="fas fa-check text-success me-2"></i>Card > ₹15k supported via Adhoc</li>
+            <li><i class="fas fa-check text-success me-2"></i>Earliest charge date for upi and card: T+2</li>
+            <li><i class="fas fa-check text-success me-2"></i>Oldest charge date: T+30</li>
+            <li><i class="fas fa-check text-success me-2"></i>Change recurring amount via Manage subs. API</li>
+            <li><i class="fas fa-check text-success me-2"></i>Support: care@cashfree.com</li>
+            <li></li>
+            <li></li>
+          </ul>
+          <button class="btn btn-info text-white w-100 mt-3 subscribe-btn" data-plan="basic">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standard Monthly Plan -->
+    <div class="col-md-4">
+      <div class="pricing-card bg-white h-100 shadow rounded">
+        <div class="pricing-header bg-danger text-white text-center p-3 rounded-top">
+          <h4>Standard Monthly Plan</h4>
+          <h2>₹2500 <small>/month</small></h2>
+        </div>
+        <div class="pricing-body p-4">
+          <ul class="list-unstyled">
+            <li><i class="fas fa-check text-success me-2"></i>All auth modes supported</li>
+            <li><i class="fas fa-check text-success me-2"></i>UPI > ₹15k supported via Adhoc</li>
+            <li><i class="fas fa-check text-success me-2"></i>Card > ₹15k supported via Adhoc</li>
+            <li><i class="fas fa-check text-success me-2"></i>Earliest charge date for upi and card: T+2</li>
+            <li><i class="fas fa-check text-success me-2"></i>Earliest charge date for enach: T+3</li>
+            <li><i class="fas fa-check text-success me-2"></i>Oldest charge date: T+365</li>
+            <li><i class="fas fa-check text-success me-2"></i>Change recurring amount via Manage subs. API</li>
+            <li><i class="fas fa-check text-success me-2"></i>Support: care@cashfree.com</li>
+          </ul>
+          <button class="btn btn-danger text-white w-100 mt-3 subscribe-btn" data-plan="standard">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premium Yearly Plan -->
+    <div class="col-md-4">
+      <div class="pricing-card bg-white h-100 shadow rounded">
+        <div class="pricing-header bg-primary text-white text-center p-3 rounded-top">
+          <h4>Premium Yearly Plan</h4>
+          <h2>₹25000 <small>/year</small></h2>
+        </div>
+        <div class="pricing-body p-4">
+          <ul class="list-unstyled">
+            <li><i class="fas fa-times text-danger me-2"></i>UPI not supported for Yearly plans</li>
+            <li><i class="fas fa-check text-success me-2"></i>Enach supports up to ₹10L</li>
+            <li><i class="fas fa-check text-success me-2"></i>Card > ₹15k supported via Adhoc</li>
+            <li><i class="fas fa-check text-success me-2"></i>Earliest charge date for card: T+2</li>
+            <li><i class="fas fa-check text-success me-2"></i>Earliest charge date for enach: T+3</li>
+            <li><i class="fas fa-check text-success me-2"></i>Oldest charge date: before subscription expiry</li>
+            <li><i class="fas fa-check text-success me-2"></i>Change recurring amount via Manage subs. API</li>
+            <li><i class="fas fa-check text-success me-2"></i>Support: care@cashfree.com</li>
+          </ul>
+          <button class="btn btn-primary text-white w-100 mt-3 subscribe-btn" data-plan="premium">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let cashfree;
+
+  function waitForCashfreeSDK(callback, attempts = 10, delay = 500) {
+    const check = () => {
+      if (typeof Cashfree !== "undefined") {
+        callback();
+      } else if (attempts > 0) {
+        setTimeout(() => waitForCashfreeSDK(callback, attempts - 1, delay), delay);
+      } else {
+        const paymentMessage = document.getElementById("paymentMessage");
+        if (paymentMessage) {
+          paymentMessage.textContent = "Cashfree SDK failed to load.";
+          paymentMessage.className = "alert alert-danger";
+        }
+      }
+    };
+    check();
+  }
+
+  waitForCashfreeSDK(() => {
+    cashfree = Cashfree({ mode: "sandbox" });
+    console.log("Cashfree initialized");
+  });
+
+document.querySelectorAll(".subscribe-btn").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const plan = btn.getAttribute("data-plan");
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan })
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message || "Subscription failed");
+      }
+
+      const sessionId = result.data?.subscription_session_id;
+
+      if (!sessionId) {
+        throw new Error("Session ID missing in response");
+      }
+
+      if (!cashfree) throw new Error("Cashfree SDK not initialized");
+
+      cashfree.subscriptionsCheckout({
+        subsSessionId: sessionId,
+        redirectTarget: "_blank"
+      }).catch(err => {
+        const msgBox = document.getElementById("paymentMessage");
+        if (msgBox) {
+          msgBox.textContent = err.message || "Checkout failed.";
+          msgBox.className = "alert alert-danger";
+        }
+      });
+
+    } catch (err) {
+      const msgBox = document.getElementById("paymentMessage");
+      if (msgBox) {
+        msgBox.textContent = err.message || "Something went wrong.";
+        msgBox.className = "alert alert-danger";
+      }
+      console.error("Subscription error:", err);
+    }
+  });
+});
+
+  document.getElementById("subsCheckout").addEventListener("click", () => {
+    const sessionId = document.getElementById("subsSessionId").value;
+    const messageBox = document.getElementById("paymentMessage");
+
+    if (!cashfree) {
+      messageBox.textContent = "Cashfree SDK not initialized.";
+      messageBox.className = "alert alert-danger";
+      return;
+    }
+
+    cashfree.checkout({
+      paymentSessionId: sessionId,
+      redirectTarget: "_blank"
+    }).then(result => {
+      messageBox.textContent = "Authorization complete.";
+      messageBox.className = "alert alert-success";
+      console.log("Authorization result:", result);
+    }).catch(err => {
+      messageBox.textContent = "Authorization failed.";
+      messageBox.className = "alert alert-danger";
+      console.error("Authorization error:", err);
+    });
+  });
+</script>
+</body>
+</html>
