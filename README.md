@@ -53,7 +53,7 @@ CASHFREE_SECRET=your_cashfree_secret
 ### 4. Start the server
 
 ```bash
-node index.js
+node server.js
 ```
 
 Then, open your browser and navigate to: [http://localhost:4000](http://localhost:4000)
